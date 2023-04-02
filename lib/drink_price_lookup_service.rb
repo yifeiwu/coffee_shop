@@ -8,9 +8,9 @@ class DrinkPriceLookupService
 
   def lookup_price(drink:, size:)
     drink_item = @prices_json.find { |item| item['drink_name'] == drink }
-    price = drink_item.dig('prices', size)
+    price = drink_item&.dig('prices', size)
 
-    raise "Price not found for drink_name:#{drink}, size:#{size}" unless price
+    raise "Price not found. Name:#{drink}, Size:#{size}" unless price
 
     price
   end

@@ -9,7 +9,7 @@ describe 'order_totals_service' do
       expect { OrderTotalsService.new }.to raise_error(ArgumentError)
     end
 
-    it 'reads in a source and price service' do
+    it 'reads in a list of orders and price service' do
       expect { OrderTotalsService.new(orders: orders, price_service: double) }
     end
   end

@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-# Return the price of a particular drink
+# Calculate previous and outstanding payments based on order balance
 class UserPaymentsService
   def initialize(payments:, order_totals:)
     @payments_json = payments
     @order_totals = order_totals
   end
 
-  def calculate_balance
+  def create_invoice
     total_payments = total_payments(payments_json: @payments_json)
 
     generate_results(total_payments: total_payments, order_totals: @order_totals)

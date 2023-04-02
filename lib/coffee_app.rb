@@ -11,10 +11,14 @@ module CoffeeApp
     prices = JSON.parse(prices)
     orders = JSON.parse(orders)
     payments = JSON.parse(payments)
+
     price_service = DrinkPriceLookupService.new(source: prices)
     order_totals_service = OrderTotalsService.new(orders: orders, price_service: price_service)
     order_totals = order_totals_service.calculate_user_totals
-    results = UserPaymentsService.new(payments: payments, order_totals: order_totals).calculate_balance
+
+    user_payments_service = UserPaymentsService.new(payments: payments, order_totals: order_totals)
+
+    results = user_payments_service.create_invoice
     JSON.dump(results)
   end
 end
