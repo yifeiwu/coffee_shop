@@ -3,18 +3,19 @@
 require 'drink_price_lookup_service'
 
 describe 'drink_price_lookup_service' do
+  let(:source) { JSON.load_file('./spec/fixtures/prices.json') }
   describe '#initialize' do
     it 'raises if no source is supplied' do
       expect { DrinkPriceLookupService.new }.to raise_error(ArgumentError)
     end
 
     it 'reads in a source' do
-      expect { DrinkPriceLookupService.new(source: './data/prices.json') }
+      expect { DrinkPriceLookupService.new(source: source) }
     end
   end
 
   describe '#drink_price' do
-    let(:subject) { DrinkPriceLookupService.new(source: './data/prices.json') }
+    let(:subject) { DrinkPriceLookupService.new(source: source) }
 
     it 'returns the price of a drink given the name and size' do
       expected_price = subject.lookup_price(drink: 'short espresso', size: 'small')

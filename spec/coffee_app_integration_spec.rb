@@ -2,7 +2,6 @@
 
 require 'spec_helper'
 require 'coffee_app'
-require 'JSON'
 
 RSpec.describe 'integration' do
   let(:prices_json) do
